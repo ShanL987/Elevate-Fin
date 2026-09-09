@@ -1,0 +1,376 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --bg-canvas: #06080d;
+    --bg-surface: #0a0e17;
+    --bg-header: rgba(7, 10, 16, 0.85);
+    --bg-sidebar: rgba(8, 11, 17, 0.92);
+    --bg-card: rgba(15, 20, 31, 0.70);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-card: rgba(255, 255, 255, 0.07);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --chart-grid: rgba(255, 255, 255, 0.05);
+    --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+  }
+  
+  [data-theme="light"] {
+    color-scheme: light;
+    --bg-canvas: #f5f7fa;
+    --bg-surface: #ffffff;
+    --bg-header: rgba(255, 255, 255, 0.88);
+    --bg-sidebar: rgba(255, 255, 255, 0.94);
+    --bg-card: rgba(255, 255, 255, 0.95);
+    --border-subtle: rgba(15, 23, 42, 0.08);
+    --border-card: rgba(15, 23, 42, 0.09);
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --chart-grid: rgba(15, 23, 42, 0.07);
+    --card-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.05);
+  }
+  
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    transition: background-color 0.25s ease, color 0.2s ease;
+  }
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.font-display {
+  font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Theme Adaptive Elements */
+[data-theme="light"] .bg-\[\#06080d\],
+[data-theme="light"] .bg-\[\#05070c\],
+[data-theme="light"] #app-main-shell {
+  background-color: var(--bg-canvas) !important;
+}
+
+[data-theme="light"] .bg-\[\#070a10\]\/80,
+[data-theme="light"] .bg-\[\#070a10\],
+[data-theme="light"] header {
+  background-color: var(--bg-header) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+[data-theme="light"] .bg-\[\#080b11\]\/90,
+[data-theme="light"] aside {
+  background-color: var(--bg-sidebar) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+[data-theme="light"] .bg-\[\#090d16\]\/90,
+[data-theme="light"] .bg-\[\#070a0f\]\/60 {
+  background-color: rgba(241, 245, 249, 0.85) !important;
+}
+
+/* Text in Light Mode */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] .text-white {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .text-slate-100,
+[data-theme="light"] .text-slate-200 {
+  color: #1e293b !important;
+}
+
+[data-theme="light"] .text-slate-300,
+[data-theme="light"] .text-slate-400 {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .text-slate-500 {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .border-white\/\[0\.05\],
+[data-theme="light"] .border-white\/\[0\.06\],
+[data-theme="light"] .border-white\/\[0\.07\],
+[data-theme="light"] .border-white\/\[0\.08\],
+[data-theme="light"] .border-white\/\[0\.10\] {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .bg-white\/\[0\.02\],
+[data-theme="light"] .bg-white\/\[0\.03\],
+[data-theme="light"] .bg-white\/\[0\.04\] {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+
+[data-theme="light"] .bg-white\/\[0\.06\],
+[data-theme="light"] .bg-white\/\[0\.08\] {
+  background-color: rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .hover\:bg-white\/\[0\.04\]:hover,
+[data-theme="light"] .hover\:bg-white\/\[0\.08\]:hover {
+  background-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] input[type="text"],
+[data-theme="light"] input[type="email"],
+[data-theme="light"] input[type="password"],
+[data-theme="light"] input[type="number"] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: rgba(15, 23, 42, 0.15) !important;
+}
+
+/* Glassmorphism primitives */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--card-shadow);
+  position: relative;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 40%);
+  pointer-events: none;
+}
+
+[data-theme="light"] .glass-card::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 60%);
+}
+
+.glass-card-interactive {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-interactive:hover {
+  border-color: rgba(16, 185, 129, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.25), 0 0 25px -5px rgba(16, 185, 129, 0.15);
+}
+
+/* ================================================================= */
+/* SLIP OF WHITE FLASH ANIMATION (RIGHT-TO-LEFT ON HOVER)             */
+/* A thin, refined slip of light gliding from right to left at a calm */
+/* luxurious speed (not that fast, not thick).                       */
+/* ================================================================= */
+@keyframes slip-flash-rtl {
+  0% {
+    right: -60px;
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    right: calc(100% + 60px);
+    opacity: 0;
+  }
+}
+
+.btn-flash,
+button:not(:disabled):not(.no-slip-flash) {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease;
+}
+
+.btn-flash:hover,
+button:not(:disabled):not(.no-slip-flash):hover {
+  transform: translateY(-1px);
+}
+
+.btn-flash:active,
+button:not(:disabled):not(.no-slip-flash):active {
+  transform: scale(0.98);
+}
+
+/* Thin, sleek slip of white flash */
+.btn-flash::after,
+button:not(:disabled):not(.no-slip-flash)::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  right: -60px;
+  width: 16px; /* Small slip, thin and refined - not thick */
+  height: 220%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(255, 255, 255, 0.2) 80%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+/* On hover: runs smoothly from right to left (0.95s so it is calm and not that fast) */
+.btn-flash:hover::after,
+button:not(:disabled):not(.no-slip-flash):hover::after {
+  animation: slip-flash-rtl 0.95s cubic-bezier(0.25, 1, 0.4, 1) forwards;
+}
+
+/* ======================================================== */
+/* SUBTLE FLOATING ANIMATION FOR FINAL RESULT NUMBERS      */
+/* Moves up and down only a gentle amount (not annoying)   */
+/* ======================================================== */
+@keyframes subtle-float-number {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3.5px);
+  }
+}
+
+.float-result-number,
+.animate-float-result {
+  display: inline-block;
+  animation: subtle-float-number 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Stagger floating rhythm for secondary metrics */
+.float-result-number-delayed {
+  display: inline-block;
+  animation: subtle-float-number 3.4s ease-in-out infinite 0.7s;
+  will-change: transform;
+}
+
+/* Emerald luminous glows */
+.glow-emerald {
+  box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.28);
+}
+
+.glow-emerald-soft {
+  box-shadow: 0 0 25px 0 rgba(16, 185, 129, 0.15);
+}
+
+.glow-amber-soft {
+  box-shadow: 0 0 25px 0 rgba(245, 158, 11, 0.2);
+}
+
+.glow-rose-soft {
+  box-shadow: 0 0 25px 0 rgba(244, 63, 94, 0.2);
+}
+
+/* Red Danger Glows & Indicators */
+.glow-danger-red {
+  box-shadow: 0 0 35px 2px rgba(239, 68, 68, 0.45);
+}
+
+.glow-danger-soft {
+  box-shadow: 0 0 25px 0 rgba(239, 68, 68, 0.25);
+}
+
+@keyframes pulse-danger {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.3), inset 0 0 15px rgba(239, 68, 68, 0.08);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.65), inset 0 0 25px rgba(239, 68, 68, 0.2);
+  }
+}
+
+.animate-danger-pulse {
+  animation: pulse-danger 2s infinite ease-in-out;
+}
+
+.glow-teal-subtle {
+  box-shadow: 0 0 40px -10px rgba(20, 184, 166, 0.15);
+}
+
+/* Custom terminal scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.5);
+}
+
+/* Custom glowing range slider */
+input[type="range"].glow-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"].glow-slider::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: rgba(148, 163, 184, 0.15);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+input[type="range"].glow-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -8px;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 3px solid var(--bg-canvas);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.8), 0 0 32px rgba(16, 185, 129, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="range"].glow-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 22px rgba(16, 185, 129, 1), 0 0 40px rgba(16, 185, 129, 0.6);
+}
+
+input[type="range"].glow-slider::-moz-range-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: rgba(148, 163, 184, 0.15);
+}
+
+input[type="range"].glow-slider::-moz-range-thumb {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 3px solid var(--bg-canvas);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.8);
+}
+
+

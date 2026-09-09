@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix Remix Elevate",
+  "description": "Private banking and financial intelligence terminal with dark glossy aesthetic, health analytics, interactive EMI planning, and AI advisory.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
